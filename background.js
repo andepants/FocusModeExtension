@@ -1,5 +1,6 @@
 const extensions = 'https://developer.chrome.com/docs/extensions'
 const webstore = 'https://developer.chrome.com/docs/webstore'
+const linkedin = 'https://www.linkedin.com'
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.action.setBadgeText({
@@ -8,7 +9,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.action.onClicked.addListener(async (tab) => {
-  if (tab.url.startsWith(extensions) || tab.url.startsWith(webstore)) {
+  if (tab.url.startsWith(extensions) || tab.url.startsWith(webstore) || tab.url.startsWith(linkedin)) {
     const prevState = await chrome.action.getBadgeText({ tabId: tab.id});
     const nextState = prevState === 'ON' ? 'OFF' : 'ON';
 
